@@ -9,13 +9,13 @@ public class _01_IntroToHashMaps {
         // 2. Using a for-loop, add 500 entries to your HashMap. The key entry will be the 
         //    current iteration of the loop (i). The value entry will be the square root of i.
     	for(int i = 0; i < 500; i++) {
-    		roots.put(i, (double) (i*i));
+    		roots.put(i, (double) (Math.sqrt(i))); 
     	}
         // 3. Iterate through all the entries in your HashMap displaying the keys with their respective
         //    square roots (values). Use the following format.
     	
-    	for(double d : roots.keySet()) {
-    		System.out.println("The square root of " + d + " is " + roots.get(d));
+    	for(Integer i : roots.keySet()) {
+    		System.out.println("The square root of " + i + " is " + roots.get(i));
     	}
     	    
         //    The square Root of 0 is 0.0

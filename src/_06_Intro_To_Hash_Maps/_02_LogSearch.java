@@ -81,16 +81,14 @@ public class _02_LogSearch implements ActionListener{
 		if(e.getSource().equals(b2)) {
 			String search = JOptionPane.showInputDialog("Search an ID number");
 			int id = Integer.parseInt(search);
-			for(Integer i : idCard.keySet()) {
-					if(i.equals(id)) {
-						System.out.println("Name: " + idCard.get(i));
-						break;
-					} 
-					else {
-						JOptionPane.showMessageDialog(null, "Entry doesn't exist...");
-					}
-				}
+			
+			if(idCard.containsKey(id)) {
+				System.out.println("Name: " + idCard.get(id));
+			}else {
+				JOptionPane.showMessageDialog(null, "Entry doesn't exist...");
 			}
+			
+		}
 		
 		if(e.getSource().equals(b3)) {
 			for(Integer i : idCard.keySet()) {

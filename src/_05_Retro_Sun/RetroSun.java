@@ -1,5 +1,7 @@
 package _05_Retro_Sun;
 
+import java.util.ArrayList;
+
 import processing.core.PApplet;
 
 /*
@@ -11,6 +13,11 @@ import processing.core.PApplet;
 public class RetroSun extends PApplet {
     static final int WIDTH = 800;
     static final int HEIGHT = 600;
+    float y = 525;
+	float h = 40;
+	float x = 400 - 225;
+	float w = 450;
+	ArrayList<Rectangle> rectangles = new ArrayList<Rectangle>();
 
     // RGB colors
     int[] sunColors = {
@@ -31,6 +38,11 @@ public class RetroSun extends PApplet {
     public void setup() {
         // 2. Set bgColor as the background color
         background(bgColor);
+        rectangles.add(new Rectangle(x,y,w,h));
+        rectangles.add(new Rectangle(x,y+42,w,h));
+        rectangles.add(new Rectangle(x,y+84,w,h));
+        rectangles.add(new Rectangle(x,y+126,w,h));
+        rectangles.add(new Rectangle(x,y+168,w,h));
     }
 
     @Override
@@ -104,12 +116,11 @@ public class RetroSun extends PApplet {
          */
     	
     	fill(bgColor);
-    	float y = width / 2;
-    	float h = 40;
-    	float x = 400 - 225;
-    	float w = 450;
+    
     	
-    	rect(x, y, w, h);
+    	for(Rectangle r: rectangles) {
+    		rect(r.x,r.y,r.w,r.h);
+    	}
     	
         // Set the fill color to the background color
 
@@ -135,7 +146,14 @@ public class RetroSun extends PApplet {
         // Decrease the y variable of the rectangular section created in PART 3.
         // If there isn't a variable, declare a float variable OUTSIDE of the
         // draw function AND initialize it in the setup() function.
-
+    	for(int i = 0; i < rectangles.size(); i++) {
+    	rectangles.get(i).y--;
+    	if(rectangles.get(i).y == 300) {
+    		rectangles.get(i).y = 525;
+    	}
+    	
+    	rectangles.get(i).h = map(rectangles.get(i).y, 300, 525, 1, 40);
+    	}
         // Do you see the rectangle moving upwards?
 
         // Pick a y positon to be the location when the sections stop moving up.
@@ -166,7 +184,8 @@ public class RetroSun extends PApplet {
         // code you wrote for the 1 missing sun section.
         // HINT: You can use the Rectangle class defined below to create
         // a list of Rectangles.
-
+    	
+    	
         
         /*
          * PART 6: Adding extras

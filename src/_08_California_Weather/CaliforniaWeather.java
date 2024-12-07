@@ -32,6 +32,9 @@ public class CaliforniaWeather {
     void start() {
         HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
         
+        
+        
+        
         // All city keys have the first letter capitalized of each word
         String cityName = Utilities.capitalizeWords( "National City" );
         WeatherData datum = weatherData.get(cityName);

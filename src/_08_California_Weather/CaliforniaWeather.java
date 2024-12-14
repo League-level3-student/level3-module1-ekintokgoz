@@ -1,6 +1,11 @@
 package _08_California_Weather;
 
+import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
+import java.util.Map.Entry;
+
+import javax.swing.JOptionPane;
 
 /*
  * OBJECTIVE:
@@ -28,21 +33,38 @@ import java.util.HashMap;
  */
 
 public class CaliforniaWeather {
-    
-    void start() {
-        HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
-        
-        
-        
-        
-        // All city keys have the first letter capitalized of each word
-        String cityName = Utilities.capitalizeWords( "National City" );
-        WeatherData datum = weatherData.get(cityName);
-        
-        if( datum == null ) {
-            System.out.println("Unable to find weather data for: " + cityName);
-        } else {
-            System.out.println(cityName + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
-        }
-    }
+
+	void start() {
+		HashMap<String, WeatherData> weatherData = Utilities.getWeatherData();
+
+		String city = JOptionPane.showInputDialog("Enter a city name");
+
+		WeatherData datum = weatherData.get(city);
+
+		if( datum == null ) {
+			System.out.println("Unable to find weather data for: " + city);
+		} else {
+			System.out.println(city + " is " + datum.weatherSummary + " with a temperature of " + datum.temperatureF + " F");
+		}
+
+		String condition = JOptionPane.showInputDialog("Enter a weather condition");
+		for(Entry<String, WeatherData> e : weatherData.entrySet()) {
+			if(condition.equals(e.getValue().weatherSummary)) {
+				System.out.println(e.getKey()); 		   
+			}
+		}
+
+		String min = JOptionPane.showInputDialog("Enter a minimum temperature");
+		String max = JOptionPane.showInputDialog("Enter a maximum temperature");
+		
+		double minTemp = Double.parseDouble(min);
+		double maxTemp = Double.parseDouble(max);
+		
+		for(Entry<String, WeatherData> i : weatherData.entrySet()) {
+			if(minTemp <= i.getValue().temperatureF && maxTemp >= i.getValue().temperatureF) {
+				System.out.println(i.getKey());
+			}
+		}
+		
+	}
 }
